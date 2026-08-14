@@ -1,4 +1,6 @@
+import { MapPinIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import {
   Card,
   CardContent,
@@ -13,8 +15,10 @@ import {
   formatEmploymentType,
   formatExperienceLevel,
   formatScore,
+  matchQualityClass,
   matchQualityLabel,
 } from "@/lib/format";
+import { cn } from "@/lib/utils";
 import type { Recommendation } from "@/types/api";
 
 type RecommendationCardProps = {
@@ -32,27 +36,39 @@ export function RecommendationCard({
   const quality = matchQualityLabel(score.overall);
 
   return (
-    <Card className="h-full">
+    <Card className="h-full transition-shadow hover:shadow-md">
       <CardHeader className="gap-3">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-          <div className="min-w-0 space-y-1">
-            <h3 className="font-heading text-base font-medium text-pretty">
+          <div className="min-w-0 space-y-2">
+            <h3 className="font-heading text-base font-semibold text-pretty">
               {job.title}
             </h3>
-            <p className="text-sm text-muted-foreground">{company.name}</p>
-            <p className="text-sm text-muted-foreground">
-              {job.location}
-              <span aria-hidden="true"> · </span>
-              {formatEmploymentType(job.employmentType)}
-              <span aria-hidden="true"> · </span>
-              {formatExperienceLevel(job.experienceLevel)}
+            <p className="text-sm font-medium text-foreground/80">
+              {company.name}
             </p>
+            <div className="flex flex-wrap items-center gap-1.5 text-xs text-muted-foreground">
+              <span className="inline-flex items-center gap-1">
+                <MapPinIcon className="size-3.5" aria-hidden="true" />
+                {job.location}
+              </span>
+              <Badge variant="outline">
+                {formatEmploymentType(job.employmentType)}
+              </Badge>
+              <Badge variant="secondary">
+                {formatExperienceLevel(job.experienceLevel)}
+              </Badge>
+            </div>
           </div>
-          <div className="shrink-0 text-left sm:text-right">
+          <div
+            className={cn(
+              "shrink-0 rounded-xl px-3 py-2 text-left ring-1 sm:text-right",
+              matchQualityClass(score.overall),
+            )}
+          >
             <p className="font-heading text-3xl font-semibold tabular-nums tracking-tight">
               {formatScore(score.overall)}
             </p>
-            <p className="text-xs text-muted-foreground">{quality}</p>
+            <p className="text-xs font-medium">{quality}</p>
           </div>
         </div>
       </CardHeader>
@@ -66,7 +82,7 @@ export function RecommendationCard({
         <TechnologyOverlap technologies={recommendation.technologyOverlap} />
         <ExplanationList explanation={recommendation.explanation} />
       </CardContent>
-      <CardFooter className="flex flex-col gap-2 sm:flex-row sm:justify-end">
+      <CardFooter className="flex flex-col gap-2 bg-muted/30 sm:flex-row sm:justify-end">
         <Button
           type="button"
           variant="outline"

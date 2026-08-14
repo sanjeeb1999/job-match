@@ -69,6 +69,12 @@ export function DeveloperProfileCard({
   }
 
   const { developer } = profile;
+  const initials = developer.name
+    .split(" ")
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0]?.toUpperCase() ?? "")
+    .join("");
 
   return (
     <Card aria-live="polite">
@@ -76,8 +82,18 @@ export function DeveloperProfileCard({
         <p className="text-xs font-medium tracking-wide text-muted-foreground uppercase">
           Selected developer
         </p>
-        <CardTitle className="text-lg">{developer.name}</CardTitle>
-        <p className="text-sm text-muted-foreground">{developer.title}</p>
+        <div className="flex items-start gap-3">
+          <span
+            className="mt-0.5 flex size-11 shrink-0 items-center justify-center rounded-full bg-primary/10 font-heading text-sm font-semibold text-primary"
+            aria-hidden="true"
+          >
+            {initials || "D"}
+          </span>
+          <div className="min-w-0">
+            <CardTitle className="text-lg">{developer.name}</CardTitle>
+            <p className="text-sm text-muted-foreground">{developer.title}</p>
+          </div>
+        </div>
       </CardHeader>
       <CardContent className="flex flex-wrap items-center gap-2 text-sm">
         <span className="text-foreground">

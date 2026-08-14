@@ -60,9 +60,12 @@ export function HomePage() {
   return (
     <div className="app-shell flex min-h-screen flex-col">
       <AppHeader status={backendStatus} />
-      <main className="mx-auto flex w-full max-w-6xl flex-1 flex-col gap-8 px-4 py-8 sm:px-6 sm:py-10">
-        <section className="space-y-3">
-          <h1 className="font-heading text-2xl font-semibold tracking-tight text-pretty sm:text-3xl">
+      <main className="mx-auto flex w-full max-w-6xl flex-1 flex-col gap-8 px-4 py-8 sm:px-6 sm:py-12">
+        <section className="space-y-4">
+          <p className="inline-flex items-center rounded-full border border-primary/15 bg-primary/10 px-3 py-1 text-xs font-medium tracking-wide text-primary uppercase">
+            Graph-powered matching
+          </p>
+          <h1 className="font-heading max-w-3xl text-3xl font-semibold tracking-tight text-pretty sm:text-4xl">
             Find your best job matches
           </h1>
           <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base">
@@ -73,7 +76,7 @@ export function HomePage() {
         </section>
 
         {backendStatus === "unavailable" ? (
-          <p className="rounded-lg border border-border bg-muted/40 px-3 py-2 text-sm text-muted-foreground">
+          <p className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
             The backend is unavailable right now. JobMatch cannot load live
             graph data until the API is reachable again.
           </p>
@@ -86,7 +89,7 @@ export function HomePage() {
               : "grid grid-cols-1"
           }
         >
-          <Card>
+          <Card className="shadow-md">
             <CardHeader>
               <CardTitle>Developer</CardTitle>
               <CardDescription>

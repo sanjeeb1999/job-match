@@ -24,28 +24,28 @@ export function BackendStatus({ status }: BackendStatusProps) {
   if (status === "connected") {
     return (
       <p
-        className="flex items-center gap-2 text-sm text-muted-foreground"
+        className="inline-flex items-center gap-2 rounded-full border border-emerald-200/80 bg-emerald-50 px-3 py-1 text-xs font-medium text-emerald-800 sm:text-sm"
         aria-live="polite"
       >
-        <span className="relative flex size-2.5" aria-hidden="true">
-          <span className="absolute inline-flex size-full rounded-full bg-emerald-400/70" />
-          <span className="relative inline-flex size-2.5 rounded-full bg-emerald-600" />
+        <span className="relative flex size-2" aria-hidden="true">
+          <span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400/70" />
+          <span className="relative inline-flex size-2 rounded-full bg-emerald-600" />
         </span>
-        <span>● CognoDB Connected</span>
+        CognoDB connected
       </p>
     );
   }
 
   return (
     <p
-      className="flex items-center gap-2 text-sm text-muted-foreground"
+      className="inline-flex items-center gap-2 rounded-full border border-border bg-muted/70 px-3 py-1 text-xs font-medium text-muted-foreground sm:text-sm"
       aria-live="polite"
     >
       <span
-        className="size-2.5 rounded-full bg-neutral-400"
+        className="size-2 rounded-full bg-neutral-400"
         aria-hidden="true"
       />
-      <span>Backend unavailable</span>
+      Backend unavailable
     </p>
   );
 }

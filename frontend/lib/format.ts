@@ -46,6 +46,16 @@ export function matchQualityLabel(overall: number): string {
   return "Limited match";
 }
 
+export function matchQualityClass(overall: number): string {
+  if (overall >= 70) {
+    return "bg-teal-50 text-teal-800 ring-teal-200/80";
+  }
+  if (overall >= 50) {
+    return "bg-amber-50 text-amber-900 ring-amber-200/80";
+  }
+  return "bg-slate-100 text-slate-700 ring-slate-200/80";
+}
+
 export function formatExperienceYears(years: number): string {
   return years === 1 ? "1 year experience" : `${years} years experience`;
 }

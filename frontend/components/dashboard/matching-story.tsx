@@ -4,11 +4,11 @@ export function MatchingStory() {
   return (
     <section
       aria-labelledby="matching-story-heading"
-      className="rounded-xl border bg-card px-4 py-4 ring-1 ring-foreground/10 sm:px-5"
+      className="rounded-xl border border-border/80 bg-card px-4 py-5 shadow-sm ring-1 ring-foreground/5 sm:px-5"
     >
       <h2
         id="matching-story-heading"
-        className="font-heading text-sm font-medium"
+        className="font-heading text-sm font-semibold tracking-tight"
       >
         Why this match?
       </h2>
@@ -25,12 +25,14 @@ export function MatchingStory() {
         <Separator />
         <StoryStep>Experience level</StoryStep>
         <li
-          className="hidden text-muted-foreground sm:inline"
+          className="hidden text-primary sm:inline"
           aria-hidden="true"
         >
           →
         </li>
-        <li className="font-medium text-foreground">Match score</li>
+        <li className="rounded-full bg-primary px-2.5 py-1 text-xs font-semibold text-primary-foreground">
+          Match score
+        </li>
       </ul>
     </section>
   );
@@ -38,7 +40,7 @@ export function MatchingStory() {
 
 function StoryStep({ children }: { children: ReactNode }) {
   return (
-    <li className="rounded-md border bg-muted/40 px-2.5 py-1 font-medium">
+    <li className="rounded-full border border-primary/15 bg-primary/10 px-3 py-1 text-xs font-medium text-foreground">
       {children}
     </li>
   );
@@ -47,8 +49,7 @@ function StoryStep({ children }: { children: ReactNode }) {
 function Separator() {
   return (
     <li className="text-muted-foreground" aria-hidden="true">
-      <span className="sm:hidden">+</span>
-      <span className="hidden sm:inline">+</span>
+      <span>+</span>
     </li>
   );
 }

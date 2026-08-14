@@ -15,14 +15,38 @@ import type { GraphNodeLabel } from "@/types/api";
 
 const NODE_VISUAL: Record<
   GraphNodeLabel,
-  { icon: typeof UserIcon; caption: string }
+  { icon: typeof UserIcon; caption: string; tone: string }
 > = {
-  Developer: { icon: UserIcon, caption: "Developer" },
-  Skill: { icon: TagIcon, caption: "Skill" },
-  Project: { icon: FolderIcon, caption: "Project" },
-  Technology: { icon: TerminalIcon, caption: "Technology" },
-  Job: { icon: BriefcaseIcon, caption: "Job" },
-  Company: { icon: Building2Icon, caption: "Company" },
+  Developer: {
+    icon: UserIcon,
+    caption: "Developer",
+    tone: "bg-teal-50 text-teal-800 border-teal-200",
+  },
+  Skill: {
+    icon: TagIcon,
+    caption: "Skill",
+    tone: "bg-violet-50 text-violet-800 border-violet-200",
+  },
+  Project: {
+    icon: FolderIcon,
+    caption: "Project",
+    tone: "bg-amber-50 text-amber-900 border-amber-200",
+  },
+  Technology: {
+    icon: TerminalIcon,
+    caption: "Technology",
+    tone: "bg-sky-50 text-sky-800 border-sky-200",
+  },
+  Job: {
+    icon: BriefcaseIcon,
+    caption: "Job",
+    tone: "bg-indigo-50 text-indigo-800 border-indigo-200",
+  },
+  Company: {
+    icon: Building2Icon,
+    caption: "Company",
+    tone: "bg-slate-100 text-slate-700 border-slate-200",
+  },
 };
 
 export function GraphNodeComponent({
@@ -51,7 +75,10 @@ export function GraphNodeComponent({
       />
       <div className="flex h-full items-center gap-2">
         <span
-          className="flex size-8 shrink-0 items-center justify-center rounded-md border bg-muted"
+          className={cn(
+            "flex size-8 shrink-0 items-center justify-center rounded-md border",
+            visual.tone,
+          )}
           aria-hidden="true"
         >
           <Icon className="size-4" />

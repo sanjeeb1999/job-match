@@ -16,8 +16,10 @@ import {
   formatEmploymentType,
   formatExperienceLevel,
   formatScore,
+  matchQualityClass,
   matchQualityLabel,
 } from "@/lib/format";
+import { cn } from "@/lib/utils";
 import type { NamedSkill, Recommendation } from "@/types/api";
 
 type RecommendationDetailProps = {
@@ -54,11 +56,16 @@ export function RecommendationDetail({
             </DialogHeader>
 
             <div className="space-y-6">
-              <div>
+              <div
+                className={cn(
+                  "inline-flex flex-col rounded-xl px-3 py-2 ring-1",
+                  matchQualityClass(recommendation.score.overall),
+                )}
+              >
                 <p className="font-heading text-3xl font-semibold tabular-nums tracking-tight">
                   {formatScore(recommendation.score.overall)}
                 </p>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm font-medium">
                   {matchQualityLabel(recommendation.score.overall)}
                 </p>
               </div>

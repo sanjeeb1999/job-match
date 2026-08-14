@@ -32,7 +32,7 @@ export function RecommendationsList({
         >
           Recommended jobs
         </h2>
-        <p className="max-w-2xl text-sm text-muted-foreground">
+        <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground">
           Jobs ranked using your skills, project technologies, experience
           level, and job requirements.
         </p>
