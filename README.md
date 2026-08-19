@@ -331,4 +331,22 @@ npm run build
 
 ## Deployment
 
-The app is not deployed from this repository. Hosting (frontend, API, env, and CORS) depends on the environment you choose. Set `COGNODB_*`, `PORT`, `CORS_ORIGIN`, and `NEXT_PUBLIC_API_BASE_URL` for that environment. No production URLs are published here.
+Hosting depends on the provider. For a **Render** Web Service of the NestJS API:
+
+| Setting | Value |
+|---------|--------|
+| Root Directory | `backend` |
+| Build Command | `npm install && npm run build` |
+| Start Command | `npm run start:prod` |
+
+Set environment variables in the host (never commit them):
+
+- `COGNODB_URI`
+- `COGNODB_USER`
+- `COGNODB_PASSWORD`
+- `CORS_ORIGIN` (your frontend origin, for example `https://your-frontend.onrender.com`)
+- `NODE_ENV=production`
+
+Render injects `PORT`. The API listens on that value.
+
+The Next.js frontend is a separate static/web service. Set `NEXT_PUBLIC_API_BASE_URL` to the deployed API base, including `/api`.
